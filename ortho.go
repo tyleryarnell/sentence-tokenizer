@@ -29,12 +29,12 @@ A map from context position and first-letter case to the
 appropriate orthographic context flag.
 */
 var orthoMap = map[[2]string]int{
-	[2]string{"initial", "upper"}:  orthoBegUc,
-	[2]string{"internal", "upper"}: orthoMidUc,
-	[2]string{"unknown", "upper"}:  orthoUnkUc,
-	[2]string{"initial", "lower"}:  orthoBegLc,
-	[2]string{"internal", "lower"}: orthoMidLc,
-	[2]string{"unknown", "lower"}:  orthoUnkLc,
+	{"initial", "upper"}:  orthoBegUc,
+	{"internal", "upper"}: orthoMidUc,
+	{"unknown", "upper"}:  orthoUnkUc,
+	{"initial", "lower"}:  orthoBegLc,
+	{"internal", "lower"}: orthoMidLc,
+	{"unknown", "lower"}:  orthoUnkLc,
 }
 
 // Ortho creates a promise for structs to implement an orthogonal heuristic

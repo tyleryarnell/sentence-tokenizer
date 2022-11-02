@@ -259,6 +259,7 @@ func (p *DefaultWordTokenizer) HasSentEndChars(t *Token) bool {
 	return false
 }
 
+// IsCjkPunct -
 func IsCjkPunct(r rune) bool {
 	switch r {
 	case '。', '；', '！', '？':

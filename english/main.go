@@ -5,21 +5,22 @@ import (
 	"strings"
 
 	"github.com/neurosnap/sentences"
-	"github.com/neurosnap/sentences/data"
+	eng "github.com/neurosnap/sentences/data/english"
 )
 
+// WordTokenizer type
 type WordTokenizer struct {
 	sentences.DefaultWordTokenizer
 }
 
 var reAbbr = regexp.MustCompile(`((?:[\w]\.)+[\w]*\.)`)
 
-// English customized sentence tokenizer.
+// NewSentenceTokenizer English customized sentence tokenizer.
 func NewSentenceTokenizer(s *sentences.Storage) (*sentences.DefaultSentenceTokenizer, error) {
 	training := s
 
 	if training == nil {
-		b, err := data.Asset("data/english.json")
+		b, err := eng.Asset("data/english.json")
 		if err != nil {
 			return nil, err
 		}
@@ -66,6 +67,7 @@ func NewSentenceTokenizer(s *sentences.Storage) (*sentences.DefaultSentenceToken
 	return tokenizer, nil
 }
 
+// NewWordTokenizer returns a word tokenizer
 func NewWordTokenizer(p sentences.PunctStrings) *WordTokenizer {
 	word := &WordTokenizer{}
 	word.PunctStrings = p
@@ -73,7 +75,7 @@ func NewWordTokenizer(p sentences.PunctStrings) *WordTokenizer {
 	return word
 }
 
-// Find any punctuation excluding the period final
+// HasSentEndChars Find any punctuation excluding the period final
 func (e *WordTokenizer) HasSentEndChars(t *sentences.Token) bool {
 	enders := []string{
 		`."`, `.'`, `.)`, `.’`, `.”`,
@@ -102,7 +104,7 @@ func (e *WordTokenizer) HasSentEndChars(t *sentences.Token) bool {
 	return false
 }
 
-// Attempts to tease out custom Abbreviations, e.g. F.B.I.
+// MultiPunctWordAnnotation Attempts to tease out custom Abbreviations, e.g. F.B.I.
 type MultiPunctWordAnnotation struct {
 	*sentences.Storage
 	sentences.TokenParser
@@ -110,6 +112,7 @@ type MultiPunctWordAnnotation struct {
 	sentences.Ortho
 }
 
+// Annotate will annotate sentences
 func (a *MultiPunctWordAnnotation) Annotate(tokens []*sentences.Token) []*sentences.Token {
 	for _, tokPair := range a.TokenGrouper.Group(tokens) {
 		if len(tokPair) < 2 || tokPair[1] == nil {
