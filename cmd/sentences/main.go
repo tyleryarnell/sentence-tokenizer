@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/neurosnap/sentences/english"
+	"github.com/tyleryarnell/sentence-tokenizer/english"
 )
 
 // VERSION is the semantic version number

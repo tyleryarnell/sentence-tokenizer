@@ -4,8 +4,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/neurosnap/sentences"
-	eng "github.com/neurosnap/sentences/data/english"
+	sentences "github.com/tyleryarnell/sentence-tokenizer"
+	eng "github.com/tyleryarnell/sentence-tokenizer/data/english"
 )
 
 // WordTokenizer type

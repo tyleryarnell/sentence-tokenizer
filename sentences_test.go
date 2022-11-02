@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	td "github.com/neurosnap/sentences/data/english"
+	td "github.com/tyleryarnell/sentence-tokenizer/data/english"
 )
 
 func loadTokenizer(data string) *DefaultSentenceTokenizer {
